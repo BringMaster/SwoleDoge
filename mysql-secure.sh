@@ -16,4 +16,4 @@ FLUSH PRIVILEGES;
 EOFMYSQLSECURE
 
 # Note down this password. Else you will lose it and you may have to reset the admin password in mySQL
-echo -e "SUCCESS! MySQL password is: ${PASS_MYSQL_ROOT}"
+echo -e "SUCCESS! MySQL password is: ${PASS_MYSQL_ROOT}" >> mysql.txt
