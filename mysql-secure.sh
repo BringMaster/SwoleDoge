@@ -4,11 +4,11 @@
 PASS_MYSQL_ROOT=`openssl rand -base64 12` # Save this password
 
 # Set password with `debconf-set-selections` You don't have to enter it in prompt
-sudo debconf-set-selections <<< "mysql-server mysql-server/root_password password ${PASS_MYSQL_ROOT}" # new password for the MySQL root user
-sudo debconf-set-selections <<< "mysql-server mysql-server/root_password_again password ${PASS_MYSQL_ROOT}" # repeat password for the MySQL root user
+debconf-set-selections <<< "mysql-server mysql-server/root_password password ${PASS_MYSQL_ROOT}" # new password for the MySQL root user
+debconf-set-selections <<< "mysql-server mysql-server/root_password_again password ${PASS_MYSQL_ROOT}" # repeat password for the MySQL root user
 
 # Other Code.....
-sudo mysql --user=root --password=${PASS_MYSQL_ROOT} << EOFMYSQLSECURE
+mysql --user=root --password=${PASS_MYSQL_ROOT} << EOFMYSQLSECURE
 DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');
 DELETE FROM mysql.user WHERE User='';
 DELETE FROM mysql.db WHERE Db='test' OR Db='test_%';
